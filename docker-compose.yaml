@@ -1,0 +1,20 @@
+services:
+  unifi-controller:
+    container_name: unifi-controller
+    image: lscr.io/linuxserver/unifi-controller:${TAG}
+    restart: unless-stopped
+    volumes:
+      - ${VOLUME_PATH}:/config
+    environment:
+      PUID: ${PUID}
+      PGID: ${PGID}
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - ${HTTP_PORT}:8080
+      - ${HTTPS_PORT}:8443
+      - 1900:1900/udp
+      - 8843:8843
+      - 8880:8880
+      - 6789:6789
+      - 5514:5514/udp
